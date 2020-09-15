@@ -131,3 +131,5 @@ dmypy.json
 .idea
 idea/
 .idea/
+
+flask-backend/.spotify_caches
