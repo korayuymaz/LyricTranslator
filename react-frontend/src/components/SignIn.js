@@ -4,12 +4,12 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            url: window.token,
+            url: window.token.toString().replaceAll("amp;", "")
         };
         this.handleUrl = this.handleUrl.bind(this);
     }
     handleUrl(){
-        window.location = this.state.url
+        window.location.href = this.state.url
     }
     render() {
         return(

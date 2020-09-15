@@ -38,13 +38,12 @@ def index():
     sign in butonunun içine auth_url gömülecek."""
     if not auth_manager.get_cached_token():
         # Step 2. Display sign in link when no token
-        auth_url = auth_manager.get_authorize_url()
+        auth_url = str(auth_manager.get_authorize_url())
         return render_template('index.html', auth_url=auth_url)
         # return f'<h2><a href="{auth_url}">Sign in</a></h2>'
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    print(spotify.me())
     return f'<h2>Hi {spotify.me()["display_name"]}, ' \
            f'<small><a href="/sign_out">[sign out]<a/></small></h2>' \
            f'<a href="/playlists">my playlists</a> | ' \
@@ -58,7 +57,6 @@ def current_user():
     if not auth_manager.get_cached_token():
         return redirect('/')
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    print(spotify.current_user())
     return spotify.current_user()
 
 
