@@ -39,13 +39,14 @@ def index():
     if not auth_manager.get_cached_token():
         # Step 2. Display sign in link when no token
         auth_url = str(auth_manager.get_authorize_url())
-        return render_template('index.html', auth_url=auth_url)
+        return render_template('index.html', auth_url=auth_url, page_name='sign_in')
         # return f'<h2><a href="{auth_url}">Sign in</a></h2>'
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     my_profile = spotify.me()
-    return render_template('my_profile.html', my_profile=my_profile)
+    return render_template('index.html', my_profile=my_profile, page_name='my_profile')
+
 
 @app.route('/current_user')
 def current_user():
@@ -67,6 +68,7 @@ def sign_out():
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
     return redirect('/')
+
 
 @app.route('/playlists')
 def playlists():
