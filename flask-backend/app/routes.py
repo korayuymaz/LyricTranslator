@@ -71,3 +71,24 @@ def sign_out():
     except OSError as e:
         print("Error: %s - %s." % (e.filename, e.strerror))
     return redirect('/')
+
+@app.route('/playlists')
+def playlists():
+    auth_manager = spotipy.oauth2.SpotifyOAuth(cache_path=session_cache_path())
+    if not auth_manager.get_cached_token():
+        return redirect('/')
+
+    spotify = spotipy.Spotify(auth_manager=auth_manager)
+    return spotify.current_user_playlists()
+
+
+@app.route('/currently_playing')
+def currently_playing():
+    auth_manager = spotipy.oauth2.SpotifyOAuth(cache_path=session_cache_path())
+    if not auth_manager.get_cached_token():
+        return redirect('/')
+    spotify = spotipy.Spotify(auth_manager=auth_manager)
+    track = spotify.current_user_playing_track()
+    if not track is None:
+        return track
+    return "No track currently playing."
