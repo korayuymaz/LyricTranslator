@@ -133,3 +133,4 @@ idea/
 .idea/
 
 flask-backend/.spotify_caches
+react-frontend/node_modules
