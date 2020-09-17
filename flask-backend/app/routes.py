@@ -44,12 +44,8 @@ def index():
 
     # Step 4. Signed in, display data
     spotify = spotipy.Spotify(auth_manager=auth_manager)
-    return f'<h2>Hi {spotify.me()["display_name"]}, ' \
-           f'<small><a href="/sign_out">[sign out]<a/></small></h2>' \
-           f'<a href="/playlists">my playlists</a> | ' \
-           f'<a href="/currently_playing">currently playing</a> | ' \
-           f'<a href="/current_user">me</a>'
-
+    my_profile = spotify.me()
+    return render_template('my_profile.html', my_profile=my_profile)
 
 @app.route('/current_user')
 def current_user():
