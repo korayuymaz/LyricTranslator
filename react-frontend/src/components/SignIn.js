@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/sign-in.css';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -14,10 +15,10 @@ class SignIn extends React.Component {
     render() {
         return(
             <div>
-                <button onClick={this.handleUrl}>
-                    Sign In
-                </button>
-                <p>{this.state.url}</p>
+                <div id='btn' onClick={this.handleUrl}>
+                    <span className="no_select">Sign In</span>
+                    <div id="circle"></div>
+                </div>
             </div>
         )
     }
