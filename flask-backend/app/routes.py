@@ -3,6 +3,8 @@ from app import app
 import spotipy
 import uuid
 import os
+import lyricsgenius
+
 
 caches_folder = './.spotify_caches/'
 if not os.path.exists(caches_folder):
@@ -11,6 +13,11 @@ if not os.path.exists(caches_folder):
 
 def session_cache_path():
     return caches_folder + session.get('uuid')
+
+
+GENIUS_SECRET_KEY = os.environ.get('GENIUS_SECRET_KEY')
+genius = lyricsgenius.Genius(GENIUS_SECRET_KEY)
+genius.verbose = False
 
 
 # @app.route("/")
@@ -91,6 +98,8 @@ def currently_playing():
         artist = track['item']['artists'][0]['name']
         image = track['item']['album']['images'][0]['url']
         song_name = track['item']['name']
+        genius_song = genius.search_song(song_name, artist)
+        lyrics = genius_song.lyrics
         return render_template('index.html', page_name='currently_playing', artist=artist, image=image,
-                               song_name=song_name)
+                               song_name=song_name, lyrics=lyrics)
     return "No track currently playing."
