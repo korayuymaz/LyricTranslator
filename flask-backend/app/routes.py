@@ -88,5 +88,9 @@ def currently_playing():
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     track = spotify.current_user_playing_track()
     if not track is None:
-        return track
+        artist = track['item']['artists'][0]['name']
+        image = track['item']['album']['images'][0]['url']
+        song_name = track['item']['name']
+        return render_template('index.html', page_name='currently_playing', artist=artist, image=image,
+                               song_name=song_name)
     return "No track currently playing."
