@@ -20,7 +20,7 @@ class MyProfile extends React.Component {
     render() {
         return(
             <div>
-                <div id='btn' onClick={this.handleCurrentlyPlaying}>
+                <div id='btn' onClick={this.handleCurrentlyPlaying} className="button">
                     <span className="no_select">Currently Playing</span>
                     <div id="circle"></div>
                 </div>
