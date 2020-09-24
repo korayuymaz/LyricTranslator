@@ -4,19 +4,21 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import SignIn from "./components/SignIn";
 import MyProfile from "./components/MyProfile";
+import CurrentlyPlaying from "./components/CurrentlyPlaying";
 
 if (window.token.page === 'sign_in') {
     ReactDOM.render(
-        <React.StrictMode>
-            <SignIn/>
-        </React.StrictMode>,
+        <SignIn/>,
         document.getElementById('root')
     );
-}else if(window.token.page === 'my_profile'){
+} else if (window.token.page === 'my_profile') {
     ReactDOM.render(
-        <React.StrictMode>
-            <MyProfile />
-        </React.StrictMode>,
+        <MyProfile/>,
+        document.getElementById('root')
+    );
+} else if (window.token.page === 'currently_playing') {
+    ReactDOM.render(
+        <CurrentlyPlaying/>,
         document.getElementById('root')
     );
 }
