@@ -1,15 +1,13 @@
 .currently_playing{
     margin: 10px;
     position:fixed;
-    top: 50%;
     left: 50%;
-    width:30em;
-    height:18em;
 }
 
-.currently_playing, p, h1, h2{
+.currently_playing, h1, h2{
     color: white;
     text-align: center;
+    font-size: 26px;
 }
 
 .currently_playing, img{
@@ -19,6 +17,9 @@
 }
 
 .currently_playing, p{
-
+    font-size: 18px;
+    width: 400px;
+    color: white;
+    text-align: center;
+    left: 50%;
 }
-
