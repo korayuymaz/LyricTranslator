@@ -4,7 +4,7 @@ import spotipy
 import uuid
 import os
 import lyricsgenius
-
+import json
 
 caches_folder = './.spotify_caches/'
 if not os.path.exists(caches_folder):
@@ -96,10 +96,10 @@ def currently_playing():
     track = spotify.current_user_playing_track()
     if not track is None:
         artist = track['item']['artists'][0]['name']
-        image = track['item']['album']['images'][0]['url']
+        image = track['item']['album']['images'][1]['url']
         song_name = track['item']['name']
         genius_song = genius.search_song(song_name, artist)
-        lyrics = genius_song.lyrics
+        lyrics = json.dumps(genius_song.lyrics)
         return render_template('index.html', page_name='currently_playing', artist=artist, image=image,
                                song_name=song_name, lyrics=lyrics)
     return "No track currently playing."
